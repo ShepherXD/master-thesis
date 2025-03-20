@@ -1,0 +1,21 @@
+export PYTHONPATH=$PYTHONPATH:/home/kara/.local/lib/python3.8/site-packages:/usr/local/lib/python3.8/dist-packages
+CUDA_VISIBLE_DEVICES=6,7 python3.8 -m torch.distributed.launch --nproc_per_node=2 --master_port=12233 --use_env /home/kara/DiffuSeq/scripts/run_train.py \
+--diff_steps 2000 \
+--lr 0.00001 \
+--learning_steps 50000 \
+--save_interval 5000 \
+--seed 102 \
+--noise_schedule sqrt \
+--hidden_dim 128 \
+--bsz 128 \
+--microbatch 128 \
+--dataset second-detox \
+--data_dir /home/kara/DiffuSeq/datasets/my-theme/paradetox \
+--learned_mean_embed True \
+--denoise True \
+--vocab bert \
+--seq_len 128 \
+--use_fp16 \
+--denoise_rate 0.5 \
+--schedule_sampler lossaware \
+--notes learned_mask_fp16_denoise_0.5_reproduce
